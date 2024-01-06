@@ -11,6 +11,7 @@ class Database
     public $link;
     public $error;
 
+
     public function __construct()
     {
         $this->dbConnect();
@@ -47,5 +48,22 @@ class Database
             echo "0 results";
           }
         if($data) return $data;
+    }
+
+    public function select($query){
+        $result = mysqli_query($this->link,$query) or die($this->link->error.__LINE__);
+       
+            // output data of each row
+        while($row = mysqli_fetch_assoc($result)) {
+            return $row;
+        }
+        
+        
+    }
+
+    public function del($query){
+        $result = mysqli_query($this->link,$query) or die($this->link->error.__LINE__);
+
+        if($result) return $result;
     }
 }

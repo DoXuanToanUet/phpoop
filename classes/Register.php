@@ -60,4 +60,16 @@ class Register{
         $result = $this->db->show($query);
         return $result;
     }
+
+    public function getStdById($id){
+        $query  = "SELECT * FROM `student` WHERE id='$id' ";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function delStudent($id){
+        $query  = "DELETE FROM `student` WHERE id='$id' ";
+        $result = $this->db->del($query);
+        return $result;
+    }
 }
