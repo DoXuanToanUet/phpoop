@@ -2,17 +2,20 @@
 <?php 
     include 'classes/Register.php';
     
-
-    // if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
-    //     $register = $re->addRegister($_POST,$_FILES);
-    // }
-   
     if( isset($_GET['id']) ){
         $id = $_GET['id'];
-        $re = new Register();
-        $edit = $re->getStdById($id);
+      
         // showdata($edit);
     }
+    $re = new Register();
+    $edit = $re->getStdById($id);
+    if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
+        $register = $re->updateStudent($_POST,$_FILES,$id);
+    }
+   
+    
+    
+
     $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 
     $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
